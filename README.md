@@ -1,2 +1,2 @@
-# microns-minnie-coregistration
-functional / EM data coregistration for minnie
+# microns-coregistration
+microns functional / EM data coregistration
