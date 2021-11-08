@@ -79,9 +79,6 @@ def register_adapters(schema_name:str=None, adapter_objects:dict=None, context=N
     for name, adapter in adapter_objects.items():
         context[name] = adapter
 
-# Typing annotation hints not strictly necessary. This import is also not necessary if you only specify one type.
-from typing import Union
-
 config_mapping = {
     SCHEMAS.MINNIE_EM: {
         "externals": externals.minnie_em,
@@ -96,25 +93,6 @@ adapters_mapping = {
 externals_mapping = {
     'microns_minnie_em': config_mapping[SCHEMAS.MINNIE_EM]["externals"]
 }
-
-# def create_vm(schema: Union[SCHEMAS, str]):
-#     """
-#     Creates a virtual module after registering the external stores, and includes the adapter objects in the vm.
-#     """
-    
-#     # Steps that create_vm should take for each schema:
-#     # 1. Register externals with dj.config
-#     # 2. Choose which schema's config to load.
-#     # 3. Load a dict with the relevant adapters into the adapter object field of a virtual module.
-    
-#     schema = SCHEMAS(schema)
-    
-#     mapping = config_mapping[schema]
-#     externals = mapping['externals']
-#     if externals is not None:
-#         register_externals(externals)
-#     schema_name = schema.value
-#     return dj.create_virtual_module(schema_name, schema_name, add_objects=mapping['adapters'])
 
 def create_vm(schema_name:str):
     """
