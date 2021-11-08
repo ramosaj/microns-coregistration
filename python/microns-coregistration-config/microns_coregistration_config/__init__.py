@@ -37,23 +37,37 @@ class SCHEMAS(Enum):
     MINNIE_EM = 'microns_minnie_em'
 
 
-def register_externals(stores_config: dict):
+def register_externals(schema_name:str=None, stores_config:dict=None):
     """
-    Registers the external stores for a schema in this module.
+    TODO: Check logic/ add validation if passing both stores_config and schema_name
+
+    Registers the external stores for a schema_name in this module.
     """
-    
+    if schema_name is None and stores_config is None:
+        raise Exception("Either schema_name or stores_config must be set")
+
+    if schema_name is not None: 
+        stores_config = externals_mapping[schema_name]
+
     if 'stores' not in dj.config:
         dj.config['stores'] = stores_config
     else:
         dj.config['stores'].update(stores_config)
 
 
-def register_adapters(adapter_objects: dict, context=None):
+def register_adapters(schema_name:str=None, adapter_objects:dict=None, context=None):
     """
-    Imports the adapters for a schema into the global namespace.
+    TODO: Check logic/ add validation if passing both stores_config and schema_name
+
+    Imports the adapters for a schema_name into the global namespace.
     
     This function is probably not necessary, but standardization is nice.
     """
+    if schema_name is None and adapter_objects is None:
+        raise Exception("Either schema_name or adapter_objects must be set")
+
+    if schema_name is not None: 
+        adapter_objects = adapters_mapping[schema_name]
     
     if context is None:
         # if context is missing, use the calling namespace
@@ -65,18 +79,44 @@ def register_adapters(adapter_objects: dict, context=None):
     for name, adapter in adapter_objects.items():
         context[name] = adapter
 
-
 # Typing annotation hints not strictly necessary. This import is also not necessary if you only specify one type.
 from typing import Union
 
 config_mapping = {
     SCHEMAS.MINNIE_EM: {
-        externals: externals.minnie_em,
-        adapters: None
+        "externals": externals.minnie_em,
+        "adapters": None
     }
 }
 
-def create_vm(schema: Union[SCHEMAS, str]):
+adapters_mapping = {
+    'microns_minnie_em': config_mapping[SCHEMAS.MINNIE_EM]["adapters"]
+}
+
+externals_mapping = {
+    'microns_minnie_em': config_mapping[SCHEMAS.MINNIE_EM]["externals"]
+}
+
+# def create_vm(schema: Union[SCHEMAS, str]):
+#     """
+#     Creates a virtual module after registering the external stores, and includes the adapter objects in the vm.
+#     """
+    
+#     # Steps that create_vm should take for each schema:
+#     # 1. Register externals with dj.config
+#     # 2. Choose which schema's config to load.
+#     # 3. Load a dict with the relevant adapters into the adapter object field of a virtual module.
+    
+#     schema = SCHEMAS(schema)
+    
+#     mapping = config_mapping[schema]
+#     externals = mapping['externals']
+#     if externals is not None:
+#         register_externals(externals)
+#     schema_name = schema.value
+#     return dj.create_virtual_module(schema_name, schema_name, add_objects=mapping['adapters'])
+
+def create_vm(schema_name:str):
     """
     Creates a virtual module after registering the external stores, and includes the adapter objects in the vm.
     """
@@ -85,12 +125,7 @@ def create_vm(schema: Union[SCHEMAS, str]):
     # 1. Register externals with dj.config
     # 2. Choose which schema's config to load.
     # 3. Load a dict with the relevant adapters into the adapter object field of a virtual module.
-    
-    schema = SCHEMAS(schema)
-    
-    mapping = config_mapping[schema]
-    externals = mapping['externals']
     if externals is not None:
-        register_externals(externals)
-    schema_name = schema.value
-    return dj.create_virtual_module(schema_name, schema_name, add_objects=mapping['adapters'])
+        register_externals(schema_name)
+    
+    return dj.create_virtual_module(schema_name, schema_name, add_objects=adapters_mapping[schema_name])
