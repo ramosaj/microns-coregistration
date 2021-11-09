@@ -1,6 +1,6 @@
-# FROM ninai/microns-base 
+FROM ninai/microns-base 
 # TODO: add to dockerhub/at-docker
-FROM microns-base
+# FROM microns-base
 LABEL maintainer="Stelios Papadopoulos <spapadop@bcm.edu>"
 
 RUN pip3 install \
@@ -15,10 +15,6 @@ RUN mkdir -p .cloudvolume/secrets
 RUN echo "{\"token\": \"${CLOUDVOLUME_TOKEN:-}\"}" > .cloudvolume/secrets/cave-secret.json
 
 WORKDIR /src
-
-# MICRONS PACKAGES
-RUN git clone https://github.com/cajal/microns-materialization.git
-RUN pip3 install -e /src/microns-materialization/python
 
 # ALLEN INSTITUTE
 RUN git clone -b phase3 --single-branch https://github.com/AllenInstitute/em_coregistration.git
