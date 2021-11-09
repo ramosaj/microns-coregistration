@@ -8,8 +8,8 @@ def make_store_dict(path):
         'stage': str(path)
     }
 
-base_path = '/mnt' / 'dj-stor01' / 'microns'
+base_path = Path() / '/mnt' / 'dj-stor01' / 'microns'
 
 minnie_em = {
-    'stacks': make_store_dict(Path() / base_path / 'minnie' / 'stacks')
+    'stacks': make_store_dict(base_path / 'minnie' / 'stacks')
 }
