@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import json
 
-import microns_coregistration_config as config
+from microns_coregistration_api import config
 schema_name = 'microns_minnie65_manual_match'
 
 config.register_adapters(schema_name, context=locals())
