@@ -8,9 +8,9 @@ with open(path.join(here, '..', 'version.py')) as f:
     exec(f.read())
 
 setup(
-    name="microns-coregistration-config",
+    name="microns-coregistration-api",
     version=__version__,
-    description="configuration for microns-coregistration",
+    description="api for microns-coregistration",
     author="Christos Papadopoulos, Stelios Papadopoulos",
     packages=find_packages()
 )
