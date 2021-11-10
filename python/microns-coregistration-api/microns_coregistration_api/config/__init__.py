@@ -43,6 +43,9 @@ def create_vm(schema_name:str):
 
 class SCHEMAS(Enum):
     MINNIE_EM = 'microns_minnie_em'
+    MINNIE65_AUTO_MATCH = 'microns_minnie65_auto_match'
+    MINNIE65_COREGISTRATION = 'microns_minnie65_coregistration'
+    MINNIE65_MANUAL_MATCH = 'microns_minnie65_manual_match'
 
 
 config_mapping = {
