@@ -2,4 +2,4 @@
 microns functional / EM data coregistration
 
 ### WARNING: 
-Python native blobs get enabled when config is imported.
+Python native blobs get enabled for DataJoint when api is imported.
