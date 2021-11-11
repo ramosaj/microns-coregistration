@@ -52,5 +52,20 @@ config_mapping = {
     SCHEMAS.MINNIE_EM: {
         "externals": externals.minnie_em,
         "adapters": None
+    },
+
+    SCHEMAS.MINNIE65_AUTO_MATCH: {
+        "externals": externals.minnie65_auto_match,
+        "adapters": None
+    },
+
+    SCHEMAS.MINNIE65_COREGISTRATION: {
+        "externals": externals.minnie65_coregistration,
+        "adapters": None
+    },
+
+    SCHEMAS.MINNIE65_MANUAL_MATCH: {
+        "externals": externals.minnie65_manual_match,
+        "adapters": None
     }
 }
