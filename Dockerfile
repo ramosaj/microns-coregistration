@@ -27,4 +27,4 @@ RUN pip3 install git+https://github.com/spapa013/wridgets.git
 # TODO: torch rebuilds partially after edit, consider improving docker caching (e.g. maybe with requirements.txt install in separate step)
 COPY . /src/microns-coregistration
 RUN pip install -e /src/microns-coregistration/python/microns-coregistration
-RUN pip install -e /src/microns-coregistration/python/microns-coregistration-config
+RUN pip install -e /src/microns-coregistration/python/microns-coregistration-api
