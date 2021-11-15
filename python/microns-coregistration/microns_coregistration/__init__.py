@@ -1,10 +1,3 @@
-import warnings
-from microns_utils import config_utils
+from microns_utils import version_utils
 
-_repo = 'microns-coregistration'
-_package = _repo
-
-try:
-    __version__ = config_utils.get_package_version(repo=_repo, package=_package)
-except:
-    warnings.warn('Package version not able to be determined.')
+__version__ = version_utils.get_package_version(repo='microns-coregistration', package='microns-coregistration')
