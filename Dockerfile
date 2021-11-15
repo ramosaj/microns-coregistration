@@ -12,8 +12,6 @@ ARG CLOUDVOLUME_TOKEN
 RUN mkdir -p .cloudvolume/secrets
 RUN echo "{\"token\": \"${CLOUDVOLUME_TOKEN:-}\"}" > .cloudvolume/secrets/cave-secret.json
 
-WORKDIR /src
-
 # ALLEN INSTITUTE
 RUN pip3 install git+https://github.com/AllenInstitute/em_coregistration.git@phase3
 
@@ -24,3 +22,4 @@ RUN pip3 install git+https://github.com/spapa013/wridgets.git
 # TODO: torch rebuilds partially after edit, consider improving docker caching (e.g. maybe with requirements.txt install in separate step)
 COPY . /src/microns-coregistration
 RUN pip install -e /src/microns-coregistration/python/microns-coregistration
+RUN pip install -e /src/microns-coregistration/python/microns-coregistration-api
