@@ -19,5 +19,5 @@ setup(
     author='Stelios Papadopoulos',
     author_email='spapadop@bcm.edu',
     packages=find_packages(exclude=[]),
-    install_requires=['numpy', 'scipy', 'tqdm', 'pandas', 'seaborn', 'matplotlib', 'torch', api]
+    install_requires=['numpy', 'scipy', 'tqdm', 'pandas', 'seaborn', 'matplotlib', 'torch', api, 'microns-utils@git+https://github.com/cajal/microns-utils.git']
 )
