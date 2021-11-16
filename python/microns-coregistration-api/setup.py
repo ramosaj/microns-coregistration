@@ -11,7 +11,7 @@ setup(
     name="microns-coregistration-api",
     version=__version__,
     description="api for microns-coregistration",
-    author="Christos Papadopoulos, Stelios Papadopoulos",
+    author="Stelios Papadopoulos, Christos Papadopoulos",
     packages=find_packages(),
     install_requires=['microns-utils@git+https://github.com/cajal/microns-utils.git']
 )
