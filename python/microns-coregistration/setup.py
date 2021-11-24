@@ -10,7 +10,7 @@ with open(path.join(here, '..', 'version.py')) as f:
 def find_api(name):
     return f"{name} @ file://localhost/{here}/../{name}#egg={name}"
 
-api = find_api('microns-coregistration-config')
+api = find_api('microns-coregistration-api')
 
 setup(
     name='microns-coregistration',
@@ -19,5 +19,5 @@ setup(
     author='Stelios Papadopoulos',
     author_email='spapadop@bcm.edu',
     packages=find_packages(exclude=[]),
-    install_requires=['numpy', 'scipy', 'tqdm', 'pandas', 'seaborn', 'matplotlib', 'torch', api]
+    install_requires=['numpy', 'scipy', 'tqdm', 'pandas', 'seaborn', 'matplotlib', 'torch', api, 'microns-utils@git+https://github.com/cajal/microns-utils.git']
 )
